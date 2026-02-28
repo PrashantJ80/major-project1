@@ -112,8 +112,8 @@ app.use((req,res,next) => {
 });
 
 
-app.get('/', (req, res) => {
-    res.render('home'); // This will render views/home.ejs
+app.get("/", (req, res) => {
+  res.redirect("/listings");
 });
 // app.get("/demouser",async(req,res) => {
 //     let fakeUser = new User({
