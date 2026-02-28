@@ -46,20 +46,6 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 
-
-
-// ROOT ROUTE (ADD THIS)
-app.get("/", (req, res) => {
-    res.send("Server running successfully on Render 🚀");
-});
-
-
-
-
-
-
-
-
 app.set("view engine", "ejs");
 app.set("views", path.join (__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
@@ -106,13 +92,6 @@ const sessionOption = {
 
 
 
-
-
-
-
-
-
-
 app.use(session(sessionOption));
 app.use(flash());
 
@@ -132,6 +111,10 @@ app.use((req,res,next) => {
     next();
 });
 
+
+app.get('/', (req, res) => {
+    res.render('home'); // This will render views/home.ejs
+});
 // app.get("/demouser",async(req,res) => {
 //     let fakeUser = new User({
 //     email: "student@gmail.com",
@@ -171,15 +154,8 @@ app.use((err, req, res, next) => {
 //     res.status(statusCode).send(message);
 // })
 
-// app.listen(8080, () => {
-//     console.log("server is listening port 8080");
-// });
 
-const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 // app.put("/chats/:id", async (req, res) => {
 //   let { id } = req.params;          // extract chat id from URL
