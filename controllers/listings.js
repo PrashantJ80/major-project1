@@ -2,8 +2,19 @@ const Listing = require("../models/listing");
 
 
 module.exports.index = async (req, res) => {
-    const allListing = await Listing.find({});
-    res.render("listing/index.ejs", { allListing }); 
+    const { category, search } = req.query; // get category and search from query
+    let query = {};
+
+    if (category) {
+        query.category = category; // filter by category
+    }
+
+    if (search) {
+        query.title = { $regex: search, $options: "i" }; // case-insensitive search
+    }
+
+    const allListing = await Listing.find(query);
+    res.render("listing/index.ejs", { allListing, currUser: req.user });
 };
 
 

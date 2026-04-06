@@ -60,4 +60,32 @@ router.get("/:id/edit",
  wrapAsync (listingController.renderEditForm));
 
 
+
+ // controllers/listings.js
+
+// already declared at top:
+
+
+// existing controller functions...
+// ...
+
+// Add this at the bottom (without re-declaring Listing)
+module.exports.index = async (req, res) => {
+  const { category, search } = req.query; // get query params
+
+  let query = {};
+
+  if (category) {
+    query.category = category; // filter by category
+  }
+
+  if (search) {
+    query.title = { $regex: search, $options: "i" }; // search by title
+  }
+
+  const allListing = await Listing.find(query);
+  res.render("listings/index", { allListing, currUser: req.user });
+};
+
+
 module.exports = router;

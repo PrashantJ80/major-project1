@@ -1,106 +1,74 @@
 <% layout ("/layouts/boilerplate") %>
 <div class="row mt-3">
   <div class="col-8 offset-2">
-<h3>Create a New Listing</h3>
-<form method="POST" action="/listings" novalidate class="needs-validation" 
-enctype="multipart/form-data">
-  <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
-    <input name="listing[title]"
-    placeholder="enter title"
-    type="text"
-    class="form-control"
-    required
-    />
-    <div class="valid-feedback">Title Looks good!</div>
-  </div>
-  
-  <div class="mb-3">
-    <label for="Description" class="form-label">Description</label>
-  <textarea
-  name="listing[description]"
-  class="form-control"
-  required
-  ></textarea>
-  <div class="invalid-feedback">Please Enter a valid description</div>  
-  </div>
+    <h3>Create a New Listing</h3>
+    <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
-  
-  <!-- <div class="mb-3">
-    <label for="image" class="form-label">Image link</label>
-    <input name="listing[image]" 
-    placeholder="enter image URL/Link" 
-    type="text" 
-    class="from-control"/>
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input name="listing[title]" placeholder="Enter title" type="text" class="form-control" required/>
+        <div class="valid-feedback">Title looks good!</div>
+      </div>
 
-  </div> -->
-<!-- Incorrect: sending image as string -->
-<!-- <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="from-control"/> -->
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <textarea name="listing[description]" class="form-control" required></textarea>
+        <div class="invalid-feedback">Please enter a valid description</div>  
+      </div>
 
-<!-- Correct: sending image as object -->
- 
-<!-- <input name="listing[image][url]" 
-       placeholder="Enter image URL/Link" 
-       type="text" 
-       class="form-control"/>
-<input name="listing[image][filename]" 
-       placeholder="Enter filename" 
-       type="text" 
-       class="form-control"/> -->
-
-       <!-- <input name="listing[image][url]" 
-       placeholder="Enter image URL/Link" 
-       type="text" 
-       class="form-control"/>
-       <br> -->
-       <div>
+      <!-- Image Upload -->
+      <div class="mb-3">
         <label for="image" class="form-label">Upload Listing Image</label>
-<input name="listing[image]" 
-       placeholder="Enter filename" 
-       type="file" 
-       class="form-control"/>
-       required
-</div>
+        <input name="listing[image]" type="file" class="form-control" required/>
+      </div>
 
-  <br>
-  <div class="row">
-     <div class="mb-3 col-4">
-    <label for="price" class="form-label">Price</label>
- <input name="listing[price]" 
- placeholder="Enter Price" 
- type="number" 
- class="form-control"
- required/>  
- <div class="invalid-feedback">Please Enter a valid Price</div>  
+      <div class="row">
+        <!-- Price -->
+        <div class="mb-3 col-4">
+          <label for="price" class="form-label">Price</label>
+          <input name="listing[price]" placeholder="Enter Price" type="number" class="form-control" required/>  
+          <div class="invalid-feedback">Please enter a valid price</div>  
+        </div>
+
+        <!-- Country -->
+        <div class="mb-3 col-8">
+          <label for="country" class="form-label">Country</label>
+          <input name="listing[country]" placeholder="Enter Country" type="text" class="form-control" required />
+          <div class="invalid-feedback">Please enter a valid country</div>  
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input name="listing[location]" placeholder="Location" type="text" class="form-control" required/>
+        <div class="invalid-feedback">Please enter a valid location</div>
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" class="form-control" required>
+          <option value="" disabled selected>Select a Category</option>
+          <option value="Trending">Trending</option>
+          <option value="Rooms">Rooms</option>
+          <option value="Iconic Cities">Iconic Cities</option>
+          <option value="Mountain">Mountain</option>
+          <option value="Castle">Castle</option>
+          <option value="Amazing Pools">Amazing Pools</option>
+          <option value="Camping">Camping</option>
+          <option value="Farms">Farms</option>
+          <option value="Domes">Domes</option>
+          <option value="Ships">Ships</option>
+        </select>
+        <div class="invalid-feedback">Please select a category</div>
+      </div>
+
+      <br />
+      <button class="btn btn-dark add-btn mt-3">Add</button>
+      <br><br>
+    </form>
   </div>
-
-
-  <div class="mb-3 col-8" >
-    <label for="country" class="form-label">Country</label>
-      <input name="listing[country]" 
-      placeholder="Enter  Country" 
-      type="text"
-      class="form-control"
-      required />
-    <div class="invalid-feedback">Please Enter a valid Country</div>  
-  </div>
-
-
-  </div>
- 
-  <div class="mb-3">
-    <label for="location" class="form-label">location</label>
-     <input name="listing[location]" 
-     placeholder="Location" 
-     type="text"
-     class="form-control" 
-     required/>
-     <div class="invalid-feedback">Please Enter a valid location</div>
-
-  </div>
-  <br /><br>
-  <button class="btn  btn-dark add-btn mt-3"> Add </button>
-  <br> <br>
-</form>
-</div>
 </div>

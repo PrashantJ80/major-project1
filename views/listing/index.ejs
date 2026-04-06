@@ -1,219 +1,192 @@
 <% layout('/layouts/boilerplate') -%> 
 
 <style>
+/* ---------- Filters Section ---------- */
 #filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .filter {
   text-align: center;
-  margin-right: 2rem;
-  margin-top: 2rem;
   opacity: 0.7;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .filter:hover {
   opacity: 1;
-  cursor: pointer;
-}
-</style>
-
-
-<style>
-#filters {
-  display: flex;
-  flex-wrap: wrap;
 }
 
-.filter {
-  text-align: center;
-  margin-right: 2rem;
-  margin-top: 2rem;
-  opacity: 0.7;
-}
-
-.filter:hover {
-  opacity: 1;
-  cursor: pointer;
+.filter i {
+  font-size: 1.5rem;
+  color: #fe424d;
+  margin-bottom: 0.3rem;
 }
 
 .filter p {
-  font-size: 0.8rem;
-
-
+  font-size: 0.85rem;
+  margin: 0;
 }
 
-#tax-info {
-  display: none;
-
-
-
-}
-
-
-
+/* ---------- Tax Toggle ---------- */
 .tax-toggle {
-
-  border: 1px solid black;
+  border: 1px solid #dee2e6;
   border-radius: 1rem;
-  height: 3.5rem;
-  padding: 1rem;
-  margin-left: 3rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-
+  margin-left: auto;
+  font-size: 0.9rem;
+  background-color: #f8f9fa;
 }
 
+/* ---------- Listing Cards ---------- */
+.listing-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
 
+.listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.tax-info {
+  display: none;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
 </style>
 
-<div id="filters">
+<div class="container mt-4">
 
-  <div class="filter">
-    <div>
-      <i class="fa-solid fa-fire"></i>
+  <!-- Filters -->
+ <div id="filters" class="mb-4">
+  <div class="filter" onclick="filterCategory('Trending')">
+    <i class="fa-solid fa-fire"></i><p>Trending</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Rooms')">
+    <i class="fa-solid fa-bed"></i><p>Rooms</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Iconic Cities')">
+    <i class="fa-solid fa-mountain-city"></i><p>Iconic Cities</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Mountain')">
+    <i class="fa-solid fa-mountain"></i><p>Mountain</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Castle')">
+    <i class="fa-brands fa-fort-awesome"></i><p>Castle</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Amazing Pools')">
+    <i class="fa-solid fa-person-swimming"></i><p>Amazing Pools</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Camping')">
+    <i class="fa-solid fa-campground"></i><p>Camping</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Farms')">
+    <i class="fa-solid fa-tractor"></i><p>Farms</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Domes')">
+    <i class="fa-solid fa-landmark-dome"></i><p>Domes</p>
+  </div>
+  <div class="filter" onclick="filterCategory('Ships')">
+    <i class="fa-solid fa-ship"></i><p>Ships</p>
+  </div>
+
+
+    <!-- Tax Toggle -->
+    <div class="tax-toggle">
+      <div class="form-check form-switch mb-0">
+        <input class="form-check-input" type="checkbox" id="switchCheckDefault">
+        <label class="form-check-label ms-2" for="switchCheckDefault">Display Total After Taxes</label>
+      </div>
     </div>
-    <p>Trending</p>
   </div>
 
-  <div class="filter">
-    <div>
-      <i class="fa-solid fa-bed"></i>
-    </div>
-    <p>Rooms</p>
-  </div>
-
-  <div class="filter">
-    <div>
-     <i class="fa-solid fa-mountain-city"></i>
-    </div>
-    <p>iconic cities</p>
-  </div>
-
-  <div class="filter">
-    <div>
-      <i class="fa-solid fa-mountain"></i>
-    </div>
-    <p>Mountain</p>
-  </div>
-
-  <div class="filter">
-    <div>
-     <i class="fa-brands fa-fort-awesome"></i>
-    </div>
-    <p>Castle</p>
-  </div>
-
-
- <div class="filter">
-    <div>
-  <i class="fa-solid fa-person-swimming"></i>
-    </div>
-    <p>Amazing Pools</p>
-  </div>
-
-<div class="filter">
-    <div>
-  <i class="fa-solid fa-campground"></i>
-    </div>
-    <p>Camping</p>
-  </div>
-
-
-<div class="filter">
-    <div>
-  <i class="fa-solid fa-tractor"></i>
-    </div>
-    <p>Farms</p>
-  </div>
-
-  <div class="filter">
-    <div>
-  <i class="fa-solid fa-landmark-dome"></i>
-    </div>
-    <p>Domes</p>
-  </div>
-
-  <div class="filter">
-    <div>
-  <i class="fa-solid fa-ship"></i>
-    </div>
-    <p>Ships</p>
-  </div>
-
-
-<div>
-
-
-  <div class="tax-toggle">
-
-<div class="form-check-reverse form-switch">
-  <input class="form-check-input" 
-  type="checkbox" 
-  role="switch" 
-  id="switchCheckDefault">
-  <label class="form-check-label" 
-  for="switchCheckDefault">Display Total After Taxes</label>
-</div>
-
-  </div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-</div>
-<body>
-
-  <div class="container mt-4">
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-3">
-      <% for (let listing of allListing) { %>
-        <div class="col">
-          <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-            <div class="card h-100 border-0 shadow-sm listing-card">
-              <img src="<%= listing.image.url %>" 
-                   class="card-img-top" 
-                   alt="listing_image">
-              <div class="card-body">
-                <h5 class="card-title fw-bold"><%= listing.title %></h5>
-                <p class="card-text">
-                  ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %>/Night
-                  <i id="tax-info" class="tax-info"> &nbsp; &nbsp; +18% GST </i>
-                </p>
-              </div>
+  <!-- Listing Cards -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+    <% for (let listing of allListing) { %>
+      <div class="col">
+        <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+          <div class="card h-100 shadow-sm listing-card border-0">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
+            <div class="card-body">
+              <h5 class="card-title fw-bold"><%= listing.title %></h5>
+              <p class="card-text">
+                ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %>/Night
+                <i class="tax-info">&nbsp; +18% GST</i>
+              </p>
             </div>
-          </a>
-        </div>
-      <% } %>
-    </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
   </div>
-
-</body>
-</html>
-
-
+</div>
 
 <script>
-  let taxSwitch = document.getElementById("switchCheckDefault");
+  // Toggle tax info
+  const taxSwitch = document.getElementById("switchCheckDefault");
   taxSwitch.addEventListener("click", () => {
-    let taxInfo = document.getElementsByClassName("tax-info");
-    for(info of taxInfo) {
-      if(info.style.display != "inline"){
-        info.style.display = "inline";
-      }else {
-        info.style.display ="none"
-      }
-      // info.style.display = "inline";
+    const taxInfoElements = document.getElementsByClassName("tax-info");
+    for (let info of taxInfoElements) {
+      info.style.display = info.style.display === "inline" ? "none" : "inline";
     }
-  } )
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+  // Filter Category
+  function filterCategory(category) {
+    window.location.href = `/listings?category=${encodeURIComponent(category)}`;
+  }
+
+  // Search bar functionality
+  const searchForm = document.querySelector('form[role="search"]');
+  if (searchForm) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.querySelector('.search-inp').value.trim();
+      if(query) {
+        window.location.href = `/listings?search=${encodeURIComponent(query)}`;
+      } else {
+        window.location.href = '/listings';
+      }
+    });
+  }
+
+  // Highlight active filter
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedCategory = urlParams.get('category');
+
+  if(selectedCategory){
+    document.querySelectorAll('#filters .filter').forEach(f => {
+      if(f.textContent.trim() === selectedCategory) {
+        f.style.opacity = "1";
+        f.style.borderBottom = "2px solid #fe424d";
+      } else {
+        f.style.opacity = "0.7";
+        f.style.borderBottom = "none";
+      }
+    });
+  }
+
+
+
+
+
 </script>
